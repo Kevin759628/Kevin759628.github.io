@@ -1,0 +1,451 @@
+<html> 
+
+<head> 
+
+<script> 
+
+// my notes Q1 W2 E3 R4 T5 Y6 U7 I8 O9 P10 A11 S12 D13 F14 G15 H16 J17 K18 L19 Z20 X21 C22 V23 B24 N25 M26 
+
+  
+
+// A function that generates a fixed mapping of letters 
+
+function generate_mapping() { 
+
+  let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // The alphabet string 
+
+  let shuffled = "QWERTYUIOPASDFGHJKLZXCVBNM"; // A fixed shuffled alphabet 
+
+  let mapping = {}; // An empty object to store the mapping 
+
+  for (let i = 0; i < alphabet.length; i++) { 
+
+    // Loop through each letter in the alphabet 
+
+    let letter = alphabet[i]; // Get the current letter 
+
+    let substitute = shuffled[i]; // Get the corresponding substitute 
+
+    mapping[letter] = substitute; // Store the mapping in the object 
+
+  } 
+
+  return mapping; // Return the mapping object 
+
+} 
+
+  
+
+// A function that encrypts a text using a mapping 
+
+function encrypt(text, mapping) { 
+
+  let encrypted = ""; // An empty string to store the encrypted text 
+
+  for (let i = 0; i < text.length; i++) { 
+
+    // Loop through each character in the text 
+
+    let char = text[i]; // Get the current character 
+
+    let upper = char.toUpperCase(); // Convert it to uppercase 
+
+    if (mapping[upper]) { 
+
+      // If the character is a letter in the mapping 
+
+      let substitute = mapping[upper]; // Get the substitute letter 
+
+      if (char === upper) { 
+
+        // If the character was originally uppercase 
+
+        encrypted += substitute; // Append the substitute as it is 
+
+      } else { 
+
+        // If the character was originally lowercase 
+
+        encrypted += substitute.toLowerCase(); // Append the substitute as lowercase 
+
+      } 
+
+    } else { 
+
+      // If the character is not a letter in the mapping 
+
+      encrypted += char; // Append the character as it is 
+
+    } 
+
+  } 
+
+  return encrypted; // Return the encrypted text 
+
+} 
+
+  
+
+// A function that decrypts a text using a mapping 
+
+function decrypt(text, mapping) { 
+
+  let decrypted = ""; // An empty string to store the decrypted text 
+
+  for (let i = 0; i < text.length; i++) { 
+
+    // Loop through each character in the text 
+
+    let char = text[i]; // Get the current character 
+
+    let upper = char.toUpperCase(); // Convert it to uppercase 
+
+    let found = false; // A flag to indicate if the character is found in the mapping 
+
+    for (let key in mapping) { 
+
+      // Loop through each key in the mapping 
+
+      if (mapping[key] === upper) { 
+
+        // If the value of the key matches the character 
+
+        if (char === upper) { 
+
+          // If the character was originally uppercase 
+
+          decrypted += key; // Append the original letter 
+
+        } else { 
+
+          // If the character was originally lowercase 
+
+          decrypted += key.toLowerCase(); // Append the original letter as lowercase 
+
+        } 
+
+        found = true; // Set the flag to true 
+
+        break; // Break the loop 
+
+      } 
+
+    } 
+
+    if (!found) { 
+
+      // If the character is not found in the mapping 
+
+      decrypted += char; // Append the character as it is 
+
+    } 
+
+  } 
+
+  return decrypted; // Return the decrypted text 
+
+} 
+
+  
+
+// A function that converts a letter to a number 
+
+function letter_to_number(letter) { 
+
+  let number = 0; // A variable to store the number 
+
+  switch (letter.toUpperCase()) { // Convert the letter to uppercase and use a switch statement 
+
+    case "Q": number = 1; break; // Q is 1 
+
+    case "W": number = 2; break; // W is 2 
+
+    case "E": number = 3; break; // E is 3 
+
+    case "R": number = 4; break; // R is 4 
+
+    case "T": number = 5; break; // T is 5 
+
+    case "Y": number = 6; break; // Y is 6 
+
+    case "U": number = 7; break; // U is 7 
+
+    case "I": number = 8; break; // I is 8 
+
+    case "O": number = 9; break; // O is 9 
+
+    case "P": number = 10; break; // P is 10 
+
+    case "A": number = 11; break; // A is 11 
+
+    case "S": number = 12; break; // S is 12 
+
+    case "D": number = 13; break; // D is 13 
+
+    case "F": number = 14; break; // F is 14 
+
+    case "G": number = 15; break; // G is 15 
+
+    case "H": number = 16; break; // H is 16 
+
+    case "J": number = 17; break; // J is 17 
+
+    case "K": number = 18; break; // K is 18 
+
+    case "L": number = 19; break; // L is 19 
+
+    case "Z": number = 20; break; // Z is 20 
+
+    case "X": number = 21; break; // X is 21 
+
+    case "C": number = 22; break; // C is 22 
+
+    case "V": number = 23; break; // V is 23 
+
+    case "B": number = 24; break; // B is 24 
+
+    case "N": number = 25; break; // N is 25 
+
+    case "M": number = 26; break; // M is 26 
+
+    default: number = 0; // If the letter is not in the alphabet, return 0 
+
+  } 
+
+  return number; // Return the number 
+
+} 
+
+  
+
+// A function that converts a number to a letter 
+
+function number_to_letter(number) { 
+
+  let letter = ""; // A variable to store the letter 
+
+  switch (number) { // Use a switch statement 
+
+    case 1: letter = "Q"; break; // 1 is Q 
+
+    case 2: letter = "W"; break; // 2 is W 
+
+    case 3: letter = "E"; break; // 3 is E 
+
+    case 4: letter = "R"; break; // 4 is R 
+
+    case 5: letter = "T"; break; // 5 is T 
+
+    case 6: letter = "Y"; break; // 6 is Y 
+
+    case 7: letter = "U"; break; // 7 is U 
+
+    case 8: letter = "I"; break; // 8 is I 
+
+    case 9: letter = "O"; break; // 9 is O 
+
+    case 10: letter = "P"; break; // 10 is P 
+
+    case 11: letter = "A"; break; // 11 is A 
+
+    case 12: letter = "S"; break; // 12 is S 
+
+    case 13: letter = "D"; break; // 13 is D 
+
+    case 14: letter = "F"; break; // 14 is F 
+
+    case 15: letter = "G"; break; // 15 is G 
+
+    case 16: letter = "H"; break; // 16 is H 
+
+    case 17: letter = "J"; break; // 17 is J 
+
+    case 18: letter = "K"; break; // 18 is K 
+
+    case 19: letter = "L"; break; // 19 is L 
+
+    case 20: letter = "Z"; break; // 20 is Z 
+
+    case 21: letter = "X"; break; // 21 is X 
+
+    case 22: letter = "C"; break; // 22 is C 
+
+    case 23: letter = "V"; break; // 23 is V 
+
+    case 24: letter = "B"; break; // 24 is B 
+
+    case 25: letter = "N"; break; // 25 is N 
+
+    case 26: letter = "M"; break; // 26 is M 
+
+    default: letter = ""; // If the number is not in the range, return an empty string 
+
+  } 
+
+  return letter; // Return the letter 
+
+} 
+
+  
+
+// A function that applies the password to the encrypted text 
+
+function apply_password_to_encrypt(text, password) { 
+
+  let output = ""; // An empty string to store the output 
+
+  for (let i = 0; i < text.length; i++) { // Loop through each character in the text 
+
+    let char = text[i]; // Get the current character 
+
+    let upper = char.toUpperCase(); // Convert it to uppercase 
+
+    if (letter_to_number(upper) > 0) { // If the character is a letter in the alphabet 
+
+      let encrypted_number = letter_to_number(upper); // Convert the character to a number using letter_to_number 
+
+      let password_char = password[i % password.length]; // Get the corresponding character in the password using the index of the loop 
+
+      let password_number = letter_to_number(password_char); // Convert the password character to a number using letter_to_number 
+
+      let result = 0; // A variable to store the result 
+
+      if (i % 2 === 0) { // If the index is even 
+
+        result = encrypted_number + password_number; // Add the password number to the encrypted number 
+
+      } else { // If the index is odd 
+
+        result = encrypted_number - password_number; // Subtract the password number from the encrypted number 
+
+      } 
+
+      result = result % 26; // If the result is greater than 26 or less than 1, wrap it around using the modulo operator 
+
+      if (result <= 0) { // If the result is less than or equal to 0 
+
+        result = result + 26; // Add 26 to the result 
+
+      } 
+
+      let letter = number_to_letter(result); // Convert the result to a letter using number_to_letter 
+
+      if (char === upper) { // If the character was originally uppercase 
+
+        output += letter; // Append the letter as it is 
+
+      } else { // If the character was originally lowercase 
+
+        output += letter.toLowerCase(); // Append the letter as lowercase 
+
+      } 
+
+    } else { // If the character is not a letter in the alphabet 
+
+      output += char; // Append the character as it is 
+
+    } 
+
+  } 
+
+  return output; // Return the output 
+
+} 
+
+  
+
+// A function that applies the password to the decrypted text 
+
+function apply_password_to_decrypt(text, password) { 
+
+  let output = ""; // An empty string to store the output 
+
+  for (let i = 0; i < text.length; i++) { // Loop through each character in the text 
+
+    let char = text[i]; // Get the current character 
+
+    let upper = char.toUpperCase(); // Convert it to uppercase 
+
+    if (letter_to_number(upper) > 0) { // If the character is a letter in the alphabet 
+
+      let decrypted_number = letter_to_number(upper); // Convert the character to a number using letter_to_number 
+
+      let password_char = password[i % password.length]; // Get the corresponding character in the password using the index of the loop 
+
+      let password_number = letter_to_number(password_char); // Convert the password character to a number using letter_to_number 
+
+      let result = 0; // A variable to store the result 
+
+      if (i % 2 === 0) { // If the index is even 
+
+        result = decrypted_number - password_number; // Subtract the password number from the decrypted number 
+
+      } else { // If the index is odd 
+
+        result = decrypted_number + password_number; // Add the password number to the decrypted number 
+
+      } 
+
+      result = result % 26; // If the result is greater than 26 or less than 1, wrap it around using the modulo operator 
+
+      if (result <= 0) { // If the result is less than or equal to 0 
+
+        result = result + 26; // Add 26 to the result 
+
+      } 
+
+      let letter = number_to_letter(result); // Convert the result to a letter using number_to_letter 
+
+      if (char === upper) { // If the character was originally uppercase 
+
+        output += letter; // Append the letter as it is 
+
+      } else { // If the character was originally lowercase 
+
+        output += letter.toLowerCase(); // Append the letter as lowercase 
+
+      } 
+
+    } else { // If the character is not a letter in the alphabet 
+
+      output += char; // Append the character as it is 
+
+    } 
+
+  } 
+
+  return output; // Return the output 
+
+} 
+
+  
+
+let mapping = generate_mapping(); // Generate the mapping 
+
+</script> 
+
+</head> 
+
+<body> 
+
+<form> 
+
+<label for="password">Password:</label> 
+
+<input type="password" id="password" name="password"><br> 
+
+<label for="normal">Normal text:</label> 
+
+<input type="text" id="normal" oninput="document.getElementById('encoded').value = apply_password_to_encrypt(encrypt(this.value, mapping), document.getElementById('password').value)"><br> 
+
+<label for="encoded">Encoded text:</label> 
+
+<input type="text" id="encoded" oninput="document.getElementById('normal').value = decrypt(apply_password_to_decrypt(this.value, document.getElementById('password').value), mapping)"><br> 
+
+</form> 
+
+</body> 
+
+</html> 
+
+ 
